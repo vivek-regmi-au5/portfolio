@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
-  <title>Album example · Bootstrap</title>
+  <title>Jon Connor</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -32,11 +33,12 @@
 </style>
 <!-- Custom styles for this template -->
 <link href="album.css" rel="stylesheet">
+
 </head>
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Giftoe</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Giftoe</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,10 +48,10 @@
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Galary</a>
+            <a class="nav-link" href="{% static 'bill.pdf' %}">Resume</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
+            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
           </li>
           <li class="nav-item">
            
@@ -60,40 +62,25 @@
   </header>
 
   <main role="main">
+  	
+  	<div class ="container">
+     <h1 class="text-center pt-3">Blog</h1>
+     <br />
+     <br />
+     <h2>Latest Post</h2>
+     <hr />
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">John Connor</h1>
-        
-        <p class="lead text-muted">Everyone loves receiving gifts. But most gifts we receive are mostly showpieces and items that aren't useful for us. Sometimes it becomes a waste of resources. Share with your friends and family what gifts you are expection for your birthday, marriages, aniversaries or any special occassions. </p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Select Gifts</a>
-          
-        </p>
-      </div>
-    </section>
+     {% for blog in blogs.all %}
+     <a href="#"><h5>{{ blog.title }}</h5></a>
+     {{ blog.pub_date_pretty }}
+     <br /> 
+     <img class=".img-fluid" src="{{ blog.image.url }}" height = 200 width=200 />
+     <br />
+     <p>{{ blog.summary }}</p>
+     {% endfor %}
 
-    <div class="album py-5 bg-light">
-      <div class="container">
 
-        <div class="row">
-
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="card-img-top" src="{{ job.image.url }}" />
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p> 
-                
-              </div>
-            </div>
-          </div>
-          {% endfor %} 
-          
-        </div> 
-      </div>
-    </div> 
-
+     </div> 
   </main>
 
   <footer class="text-muted">
@@ -106,3 +93,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body>
   </html>
+  </div>
